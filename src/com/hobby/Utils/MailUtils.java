@@ -29,7 +29,7 @@ public class MailUtils {
 		// 创建验证器
 		Authenticator auth = new Authenticator() {
 			public PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("hobby_admin", "admin12345");
+				return new PasswordAuthentication("xxxxxxxx", "xxxxxxxx");
 			}
 		};
 
