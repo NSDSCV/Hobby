@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.hobby.mapper.ReplycommentMapper">
+ 	<resultMap type="com.hobby.pojo.Replycomment" id="map1">
+		<association property="uid" select="com.hobby.mapper.UserMapper.selById" column="uid"></association>
+		<association property="rid" select="com.hobby.mapper.ReplyMapper.selById" column="rid"></association>
+ 	</resultMap>
+ 
+ 	<insert id="Replycomment" parameterType="com.hobby.pojo.Replycomment">
+ 		insert into replycomment (id,uid,rid,info,time)
+ 			values(#{id},#{uid.username},#{rid.id},#{info},#{time})
+ 	</insert>
+ 	<select id="findAll" resultMap="map1">
+ 		select *from replycomment 
+ 	</select>
+ </mapper>

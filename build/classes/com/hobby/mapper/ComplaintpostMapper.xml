@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.hobby.mapper.ComplaintpostMapper">
+  	
+  	<resultMap type="com.hobby.pojo.ComplaintPost" id="findList">
+  		<association property="pid" select="com.hobby.mapper.PostMapper.selById" column="pid" ></association>
+  		<association property="bename" select="com.hobby.mapper.UserMapper.selById" column="bename" ></association>
+  		<association property="name" select="com.hobby.mapper.UserMapper.selById" column="name" ></association>
+  	</resultMap>
+  	<select id="findAllComplaint" resultMap="findList">
+  		select *from complaintpost
+  	</select>
+  	<select id="dealBeNameSuccess" parameterType="String" resultMap="findList">
+  		select *from complaintpost 
+  		<where>
+	  		 id=#{id}
+  		</where>
+  	</select>
+  	
+  </mapper>

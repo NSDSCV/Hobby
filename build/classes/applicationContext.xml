@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+	xmlns:aop="http://www.springframework.org/schema/aop"     
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd"
+         default-autowire="byName">
+    
+    <!-- 设置页面不登录也可以访问 -->     
+    <http pattern="/*.jsp" security="none"></http>
+    <http pattern="/css/**" security="none"></http>
+    <http pattern="/img/**" security="none"></http>
+    <http pattern="/js/**" security="none"></http>
+    <http pattern="/kindeditor/**" security="none"></http>
+    <http pattern="/plugins/**" security="none"></http>
+    <http pattern="/userPicture/**" security="none"></http>
+    <http pattern="/**.do" security="none"></http>
+    <!-- 页面的拦截规则 -->   
+	<http use-expressions="false">  
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+		<!-- 开启表单登录 -->
+		<form-login login-page="/adminLogin.jsp" default-target-url="/admin/index.jsp" authentication-failure-url="/adminLogin.jsp" always-use-default-target="true"/> 
+		<headers>     
+			<frame-options policy="SAMEORIGIN"/>
+		</headers> 
+		<logout/>
+		<csrf disabled="true"/>	
+		<anonymous enabled="false"/>
+	</http>
+    
+    <!-- 认证管理器 -->
+    <authentication-manager>
+    	<authentication-provider user-service-ref="UserDetailsService"></authentication-provider>
+    </authentication-manager>
+    <!-- 认证类（校验数据库） -->
+    <beans:bean id="UserDetailsService" class="com.hobby.service.UserDetailsServiceImpl"></beans:bean>         
+             
+    <!-- 注解扫描 -->
+    <context:component-scan base-package="com.hobby.serviceImpl"></context:component-scan>
+    <!-- 加载属性文件 -->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <!-- 数据源 -->  
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<beans:property name="driverClassName" value="${jdbc.driver}"></beans:property>
+    	<beans:property name="url" value="${jdbc.url}"></beans:property>
+    	<beans:property name="username" value="${jdbc.username}"></beans:property>
+    	<beans:property name="password" value="${jdbc.password}"></beans:property>
+    </beans:bean>    
+    <!-- SqlSessionFactory -->
+    <beans:bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<beans:property name="dataSource" ref="dataSource"></beans:property>
+    	<beans:property name="typeAliasesPackage" value="com.hobby.pojo"></beans:property>
+    </beans:bean>
+    <!-- 扫描器 -->   
+    <beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<beans:property name="basePackage" value="com.hobby.mapper"></beans:property>
+    	<beans:property name="sqlSessionFactoryBeanName" value="factory"></beans:property>
+    </beans:bean>  
+    <!-- 配置aop -->
+    <aop:config>
+    	<aop:pointcut expression="execution(* com.hobby.serviceImpl.*.*(..))" id="mypoint"/>
+    </aop:config>
+</beans:beans>

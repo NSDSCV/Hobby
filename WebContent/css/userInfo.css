@@ -1,0 +1,84 @@
+body{
+				background-color: #efefef;
+			}
+			font {
+				color: #666;
+				font-size: 22px;
+				font-weight: normal;
+				padding-right: 17px;
+			}				
+			#father{
+				width: 1300px;
+				margin: auto;
+			}
+			a:hover 
+			{
+				color:red;
+			}
+			a{
+				text-decoration:none;
+				color:black;
+			}
+			#logo{
+				width: 1300px;
+				height: 112px;
+			}
+			#info{
+				width: 1300px;
+				height: 141px;
+			}
+			#info1{
+				height: 112px;
+				width: 188px;
+				padding-top: 29px;
+				float: left;
+			}
+			#info2{
+				height: 112px;
+				width: 188px;
+				padding-top: 29px;
+				float: left;
+			}
+			#info3{
+				height: 75px;
+				width: 915px;
+				padding-top: 65px;
+				text-align: right;
+				float: left;
+			}
+			#index1{
+				border: 1px solid black;
+				height: 55px;
+				width: 1300px;
+				padding-top: 13px;
+			}
+			#eassy1{
+				border: 1px solid black;
+				width: 1300px;
+			}
+			#eassy11{
+				height: 50px;
+				width: 1300px;
+				
+			}
+			.eassy22{
+				height: 54px;
+				width: 1263px;
+				padding-left: 36px;
+				border-bottom:#000000 1px dashed;
+				border-top:#000000 1px dashed;
+			}
+			#eassy222{
+				height: 53px;
+				width: 974px;
+				float: left;
+			}
+			#eassy333{
+				height: 39px;
+				width: 283px;
+				float: left;
+				padding-top: 14px;
+			}
+			#bottom{
+				text-align: center;
+			}

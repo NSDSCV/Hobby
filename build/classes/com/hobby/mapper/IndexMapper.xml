@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.hobby.mapper.IndexMapper">
+ 
+ 	<select id="findThemeCount" resultType="com.hobby.pojo.FindThemeCount">
+ 		select tid ,COUNT(*) as count from post GROUP BY tid
+ 	</select>
+ 	<select id="findThemeCountById" parameterType="Integer" resultType="com.hobby.pojo.FindThemeCount">
+ 		select tid ,COUNT(*) as count from post  
+ 		<where>
+ 			tid=#{tid}
+ 		</where>GROUP BY tid
+ 	</select>
+ 		
+ </mapper>

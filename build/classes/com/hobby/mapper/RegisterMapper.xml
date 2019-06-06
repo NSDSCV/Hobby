@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.hobby.mapper.RegisterMapper">
+ 	<select id="checkUserName" resultType="java.lang.Long" parameterType="String">
+ 		select count(*) from user 
+ 		<where>
+ 			username=#{username}
+ 		</where> 
+ 	</select>
+ 	<select id="checkemailName" resultType="java.lang.Long" parameterType="String">
+ 		select count(*) from user 
+ 		<where>
+ 			email=#{email}
+ 		</where> 
+ 	</select>
+ 	<insert id="addUser" parameterType="com.hobby.pojo.User">
+ 		insert into user(email,birthday,uid,username,password,images,activecode,status) 
+ 			values(#{email},#{birthday},#{uid},#{username},#{password},#{images},#{activecode},#{status})
+ 	</insert>
+ 	<update id="editActiveCode" parameterType="String">
+ 		update user set emaillive=1
+ 		<where>
+ 			activecode=#{activecode}
+ 		</where> 
+ 	</update>
+ </mapper>

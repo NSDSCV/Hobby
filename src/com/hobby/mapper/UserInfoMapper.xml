@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hobby.mapper.UserInfoMapper">
+ 	<resultMap type="com.hobby.pojo.Post" id="postMap">
+ 		<!-- 关联一个对象 -->
+ 		<association property="uid" select="com.hobby.mapper.UserMapper.selById" 
+ 		column="uid"></association>
+ 		<association property="tid" select="com.hobby.mapper.ThemeMapper.selById"
+ 		 column="tid"></association>
+ 	</resultMap>
+ 	 <resultMap type="com.hobby.pojo.Reply" id="replyMap">
+ 		<!-- 关联一个对象 -->
+ 		<association property="uid" select="com.hobby.mapper.UserMapper.selById" 
+ 		column="uid"></association>
+ 		<association property="pid" select="com.hobby.mapper.PostMapper.selById"
+ 		 column="pid"></association>
+ 	</resultMap> 
+ 	
+ 	<select id="findAllPost" parameterType="String" resultMap="postMap">
+ 		select *from post 
+ 		<where>
+ 			uid=#{uid}
+ 		</where>
+ 	</select>
+ 	<select id="findAllReply" parameterType="String" resultMap="replyMap">
+ 		select *from reply
+ 		<where>
+ 			pid=#{pid}
+ 		</where>
+ 	</select>
+ 	<update id="editImages">
+ 		update user set images=#{0}
+ 		<where>
+ 			email=#{1}
+ 		</where>
+ 	</update>
+ 	<update id="editPasswd">
+ 		update user set password=#{0}
+ 		<where>
+ 			email=#{1}
+ 		</where>
+ 	</update>
+ </mapper>

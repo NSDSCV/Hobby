@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hobby.mapper.UserLoginMapper">
+ 	<select id="userLogin" resultType="com.hobby.pojo.User">
+ 		select *from user 
+ 		<where>
+ 			email=#{0} and password=#{1} and status=0 and emaillive=1
+ 		</where> 
+ 	</select>
+ 	
+ </mapper>

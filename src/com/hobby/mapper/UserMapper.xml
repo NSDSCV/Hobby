@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hobby.mapper.UserMapper">
+	<select id="findAllUser" resultType="com.hobby.pojo.User">
+		select *from user
+	</select>
+	<update id="editUser" parameterType="com.hobby.pojo.User">
+		update user set username=#{username},password=#{password}
+		<where>
+			uid=#{uid}
+		</where>
+	</update>
+	<select id="selById" parameterType="String" resultType="com.hobby.pojo.User">
+		select *from user 
+		<where>
+			username=#{username}
+		</where> 
+	</select>
+	<select id="selByemail" parameterType="String" resultType="com.hobby.pojo.User">
+		select *from user 
+		<where>
+			email=#{email}
+		</where> 
+	</select>
+	<update id="dealStatusSuccess" parameterType="String">
+		update user set status=1
+		<where>
+			username=#{0}
+		</where>
+	</update>
+	<update id="dealStatusFail" parameterType="String">
+		update user set status=0
+		<where>
+			username=#{0}
+		</where>
+	</update>
+	
+</mapper>

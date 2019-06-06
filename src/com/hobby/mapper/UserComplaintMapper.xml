@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hobby.mapper.UserComplaintMapper">
+ 	<insert id="addComplaintPost" parameterType="com.hobby.pojo.ComplaintPost">
+ 		insert into complaintpost(pid,bename,name,id)
+ 			values(#{pid.id},#{bename.username},#{name.username},#{id})
+ 	</insert>
+ 	<insert id="addComplaintComment" parameterType="com.hobby.pojo.ComplaintComment">
+ 		insert into complaintcomment(pid,bename,name,rid,id)
+ 			values(#{pid.id},#{bename.username},#{name.username},#{rid.id},#{id})
+ 	</insert>
+ 	
+ </mapper>
