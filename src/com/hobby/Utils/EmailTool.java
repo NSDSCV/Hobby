@@ -12,8 +12,8 @@ public class EmailTool {
 	public static Properties pro;
 	static {
 		pro = new Properties();
-		pro.setProperty("from", "hobby_admin@163.com");
-		pro.setProperty("password", "admin12345");
+		pro.setProperty("from", "xxxxx@163.com");
+		pro.setProperty("password", "xxxxxx");
 		pro.setProperty("mail.smtp.ssl.enable", "true");
 		pro.setProperty("mail.smtp.host", "smtp.163.com");
 		pro.setProperty("mail.smtp.port", "465");
